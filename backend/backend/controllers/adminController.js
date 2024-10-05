@@ -7,9 +7,6 @@ import TeamModel from "../models/teamModel.js"
 import Selection from "../models/selectionModel.js"
 import User from "../models/userModel.js"
 import Team from "../models/teamModel.js"
-//ajout dimitri
-import EvenementModel from "../models/evenementModels.js";
-
 
 import { BadRequestError, NotAuthorizedError, NotFoundError } from "base-error-handler";
 
@@ -25,8 +22,6 @@ import {
   fetchAllPlayers,
   fetchAllFormation,
   updatePositionFetch,
-  //ajout dimitri
-  fetchAgenda,
 } from "../utils/adminHelpers.js";
 
 const authAdmin = asyncHandler(async (req, res) => {
@@ -375,54 +370,6 @@ const deleteTeamData = asyncHandler(async (req, res) => {
 
 //FIN DU RAJOUT PAR MARTIN
 
-// ajout dimitri
-const getAgenda = asyncHandler(async (req, res) => {
-  const usersData = await fetchAgenda();
-
-  if (usersData) {
-
-    res.status(200).json({ usersData });
-
-  } else {
-
-    throw new NotFoundError();
-
-  }
-});
-
-const setAgenda = asyncHandler(async (req, res) => {
-  /*
-     # Desc: Register new team
-     # Route: POST /api/v1/admin/set-agenda
-     # Access: PRIVATE
-    */
-
-  const {evenements, date_start, date_end } = req.body;
-
-  // Vérification des champs requis
-  if (!date_start || !date_end) {
-    res.status(400);
-    throw new Error('Please provide both date_start and date_end');
-  }
-
-  try {
-    // Store the team data to DB
-    const newTeam = await EvenementModel.create({
-      evenements: evenements,
-      date_start: date_start,
-      date_end: date_end,
-    });
-
-    res.status(201).json({
-      message: 'Evenement registered successfully'
-    });
-  } catch (error) {
-    res.status(500);
-    throw new Error('Failed to register Evenement');
-  }
-});
-// fin ajout 
-
 const blockUser = asyncHandler(async (req, res) => {
 
   const userId = req.body.userId;
@@ -510,8 +457,5 @@ export {
   setSelectionTeam,
   updatePosition,
   deleteUserData,
-  deleteTeamData,
-  //ajout dimitri
-  getAgenda,
-  setAgenda,
+  deleteTeamData
 };

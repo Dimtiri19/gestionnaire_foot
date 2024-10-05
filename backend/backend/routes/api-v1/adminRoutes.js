@@ -28,10 +28,7 @@ import {
   setSelectionTeam,
   updatePosition,
   deleteUserData,
-  deleteTeamData,
-  //ajout dimitri
-  getAgenda,
-  setAgenda,
+  deleteTeamData
   
 } from "../../controllers/adminController.js";
 
@@ -80,12 +77,6 @@ router.patch("/change-position", requireAuth, verifyAdmin, validateRequest, upda
 router.delete("/delete-user", requireAuth, verifyAdmin, validateRequest, deleteUserData);
 
 router.delete("/delete-team", requireAuth, verifyAdmin, validateRequest, deleteTeamData);
-
-//ajout dimitri
-router.post("/get-agenda", requireAuth, verifyAdmin, getAgenda);
-
-router.post("/set-agenda", requireAuth, verifyAdmin, setAgenda);
-// fin ajout
 
 router.patch("/block-user", requireAuth, verifyAdmin, adminUserBlockingDataValidation, validateRequest, blockUser);
 

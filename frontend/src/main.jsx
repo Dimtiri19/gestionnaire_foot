@@ -30,9 +30,6 @@ import AdminProfileScreen from "./screens/adminScreens/ProfileScreen.jsx";
 import UsersManagementScreen from "./screens/adminScreens/UsersManagementScreen.jsx";
 import TableDataPlayers from "./screens/adminScreens/PlayersTable.jsx"
 import TableFormation from "./screens/adminScreens/FormationTable.jsx"
-// ajout dimi
-import Agenda from "./screens/adminScreens/AgendaTable.jsx"
-import AgendaUser from "./screens/userScreens/AgendaTableUser.jsx"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,8 +43,6 @@ const router = createBrowserRouter(
       <Route path="/register" element={<RegisterScreen />} />
 
       <Route path="/selection" element={<DisplayFormation />} />
-
-      <Route path="/agenda" element={<AgendaUser />} />
 
       <Route path="/dashboard" element={<DashBoardUser />} />
       
@@ -71,7 +66,6 @@ const router = createBrowserRouter(
         <Route path="/admin/manage-users" element={<UsersManagementScreen />} />
         <Route path="/admin/player-info" element={<TableDataPlayers />} />
         <Route path="/admin/formation" element={<TableFormation />} />
-        <Route path="/admin/agenda" element={<Agenda />} />
       </Route>
     </Route>
   )

@@ -1,7 +1,5 @@
 import User from "../models/userModel.js";
 import Team from "../models/teamModel.js";
-//ajout dimitri 
-import Evenement from "../models/evenementModels.js";
 
 const fetchAllUsers = async () => {
   try {
@@ -36,19 +34,6 @@ const fetchAllFormation = async () => {
     throw error;
   }
 };
-
-// ajout dimitri 
-const fetchAgenda = async () => {
-  try {
-    const timetable = await Evenement.find({}, { date_start: 1, date_end: 1, evenements: 1 }); 
-
-    return timetable;
-  } catch (error) {
-    console.error("Error fetching players:", error);
-    throw error;
-  }
-};
-// fin ajout
 
 const blockUserHelper = async (userId) => {
   try {
@@ -145,15 +130,12 @@ const updatePositionFetch = async (userData) => {
 
 //ajout martin
 
-
-//ajout dimitri fetchAgenda
 export { 
   fetchAllUsers, 
   blockUserHelper, 
   unBlockUserHelper, 
   updateUser, 
   fetchAllPlayers, 
-  fetchAllFormation, 
-  fetchAgenda, 
-  updatePositionFetch,
+  fetchAllFormation,  
+  updatePositionFetch
 };

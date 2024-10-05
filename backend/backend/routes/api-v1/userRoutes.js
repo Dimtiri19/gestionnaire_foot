@@ -15,8 +15,7 @@ import {
   logoutUser,
   getUserProfile,
   updateUserProfile,
-  getSelectionDisplay,
-  getAgendaDisplay,
+  getSelectionDisplay
 } from "../../controllers/userController.js";
 
 import { getAllPlayers } from "../../controllers/adminController.js";
@@ -38,8 +37,6 @@ router.post("/auth", userSignInDataValidation, validateRequest, authUser);
 router.post("/logout", logoutUser);
 
 router.post("/get-selection", requireAuth, verifyUser, getSelectionDisplay);
-
-router.post("/get-agenda", requireAuth, verifyUser, getAgendaDisplay)
 
 router.post("/get-players", requireAuth, verifyUser, getAllPlayers)
 

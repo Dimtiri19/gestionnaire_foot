@@ -1,5 +1,4 @@
 import Selection from "../models/selectionModel.js";
-import Evenement from "../models/evenementModels.js"
 
 const fetchSelection = async () => {
     try {
@@ -13,17 +12,5 @@ const fetchSelection = async () => {
     }
   };
 
-  
-const fetchAgenda = async () => {
-  try {
-    const timetable = await Evenement.find({}, { date_start: 1, date_end: 1, evenements: 1 }); 
-
-    return timetable;
-  } catch (error) {
-    console.error("Error fetching players:", error);
-    throw error;
-  }
-};
-
-  export { fetchSelection, fetchAgenda };
+  export { fetchSelection};
 

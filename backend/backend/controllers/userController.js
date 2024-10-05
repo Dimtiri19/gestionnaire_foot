@@ -8,7 +8,6 @@ import User from "../models/userModel.js";
 
 import {
   fetchSelection,
-  fetchAgenda,
 } from "../utils/userHelper.js";
 
 import generateAuthToken from "../utils/jwtHelpers/generateAuthToken.js";
@@ -168,23 +167,6 @@ const getSelectionDisplay = asyncHandler(async (req, res) => {
 
 // FIn ajout Martin
 
-//ajout dimitri
-const getAgendaDisplay = asyncHandler(async (req, res) => {
-  const usersData = await fetchAgenda();
-
-  if (usersData) {
-
-    res.status(200).json({ usersData });
-
-  } else {
-
-    throw new NotFoundError();
-
-  }
-});
-// Fin ajout
-
-
 const updateUserProfile = asyncHandler(async (req, res) => {
   /*
      # Desc: Update user profile
@@ -229,6 +211,5 @@ export {
   logoutUser,
   getUserProfile,
   updateUserProfile,
-  getSelectionDisplay,
-  getAgendaDisplay,
+  getSelectionDisplay
 };

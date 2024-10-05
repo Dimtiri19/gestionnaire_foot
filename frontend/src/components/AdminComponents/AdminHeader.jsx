@@ -58,12 +58,7 @@ const AdminHeader = () => {
               { adminInfo ? (
 
                 <>
-                  
-                  <LinkContainer to="/admin/agenda">
-                    <Nav.Link >
-                       Agenda
-                    </Nav.Link>                 
-                  </LinkContainer> 
+                   
                   <LinkContainer to="/admin/formation">
                     <Nav.Link >
                        Formation

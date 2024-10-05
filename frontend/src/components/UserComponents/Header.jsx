@@ -51,12 +51,7 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               {userInfo ? (
-                <> 
-                  <LinkContainer to="/agenda">
-                    <Nav.Link >
-                       Agenda
-                    </Nav.Link>                 
-                  </LinkContainer> 
+                <>  
                   <LinkContainer to="/selection">
                     <Nav.Link >
                        Selection

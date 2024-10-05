@@ -14,10 +14,7 @@ import {
     ADMIN_SELECTION_URL,
     ADMIN_UPDATE_POSITION_URL,
     ADMIN_DELETE_USER_URL,
-    ADMIN_DELETE_TEAM_URL,
-    //ajout dimitri
-    ADMIN_AGENDA_DISPLAY_URL,
-    ADMIN_PUSH_EVENEMENT_URL,
+    ADMIN_DELETE_TEAM_URL
 } from '../utils/constants.js';
 
 
@@ -129,24 +126,6 @@ export const adminApiSlice = apiSlice.injectEndpoints({
                 body: data
             })
         }),
-        // Ajout dimitri
-        getAgenda: builder.mutation({
-
-            query: () => ({
-                url: ADMIN_AGENDA_DISPLAY_URL,
-                method: 'POST'
-            })
-
-        }),
-        setEvenement: builder.mutation({
-
-            query: (data) => ({
-                url: ADMIN_PUSH_EVENEMENT_URL,
-                method: 'POST',
-                body: data
-            })
-
-        }),
         updateUserPosition: builder.mutation({
             
             query: (data) => ({
@@ -175,7 +154,6 @@ export const adminApiSlice = apiSlice.injectEndpoints({
 
         })
 
-        // fin ajoute 
     })
 })
 
@@ -195,9 +173,5 @@ export const {
     useSetSelectionMutation,
     useUpdateUserPositionMutation,
     useDeleteUserMutation,
-    useDeleteTeamMutation,
-    //ajout dimitri
-    useGetAgendaMutation,
-    useSetEvenementMutation,
-
+    useDeleteTeamMutation
 } = adminApiSlice;
