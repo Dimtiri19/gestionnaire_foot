@@ -22,13 +22,7 @@ import {
   updateUserData,
   blockUser,
   unBlockUser,
-  getAllPlayers,
-  setFormationTeam,
-  getFormationTeam,
-  setSelectionTeam,
-  updatePosition,
-  deleteUserData,
-  deleteTeamData
+  deleteUserData
   
 } from "../../controllers/adminController.js";
 
@@ -64,19 +58,7 @@ router
 
 router.post("/get-users", requireAuth, verifyAdmin, getAllUsers);
 
-router.post("/get-players", requireAuth, verifyAdmin, getAllPlayers)
-
-router.post("/set-team", requireAuth, verifyAdmin, setFormationTeam)
-
-router.post("/get-team", requireAuth, verifyAdmin, getFormationTeam)
-
-router.post("/set-selection", requireAuth, verifyAdmin, setSelectionTeam);
-
-router.patch("/change-position", requireAuth, verifyAdmin, validateRequest, updatePosition);
-
 router.delete("/delete-user", requireAuth, verifyAdmin, validateRequest, deleteUserData);
-
-router.delete("/delete-team", requireAuth, verifyAdmin, validateRequest, deleteTeamData);
 
 router.patch("/block-user", requireAuth, verifyAdmin, adminUserBlockingDataValidation, validateRequest, blockUser);
 

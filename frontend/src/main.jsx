@@ -18,8 +18,6 @@ import HomeScreen from "./screens/userScreens/HomeScreen.jsx";
 import LoginScreen from "./screens/userScreens/LoginScreen.jsx";
 import RegisterScreen from "./screens/userScreens/RegisterScreen.jsx";
 import ProfileScreen from "./screens/userScreens/ProfileScreen.jsx";
-import DisplayFormation from "./screens/userScreens/FormationSelected.jsx"
-import DashBoardUser from "./screens/userScreens/Dashboardplayer.jsx"
 
 //? ==================================== Admin Screens Import ====================================
 import AdminPrivateRoutes from "./screens/adminScreens/PrivateRoutes.jsx";
@@ -28,8 +26,7 @@ import AdminLoginScreen from "./screens/adminScreens/LoginScreen.jsx";
 import AdminRegisterScreen from "./screens/adminScreens/RegisterScreen.jsx";
 import AdminProfileScreen from "./screens/adminScreens/ProfileScreen.jsx";
 import UsersManagementScreen from "./screens/adminScreens/UsersManagementScreen.jsx";
-import TableDataPlayers from "./screens/adminScreens/PlayersTable.jsx"
-import TableFormation from "./screens/adminScreens/FormationTable.jsx"
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,11 +38,6 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginScreen />} />
 
       <Route path="/register" element={<RegisterScreen />} />
-
-      <Route path="/selection" element={<DisplayFormation />} />
-
-      <Route path="/dashboard" element={<DashBoardUser />} />
-      
 
       {/* USER PRIVATE ROUTES */}
       <Route path="" element={<PrivateRoutes />}>
@@ -64,8 +56,6 @@ const router = createBrowserRouter(
       <Route path="" element={<AdminPrivateRoutes />}>
         <Route path="/admin/profile" element={<AdminProfileScreen />} />
         <Route path="/admin/manage-users" element={<UsersManagementScreen />} />
-        <Route path="/admin/player-info" element={<TableDataPlayers />} />
-        <Route path="/admin/formation" element={<TableFormation />} />
       </Route>
     </Route>
   )

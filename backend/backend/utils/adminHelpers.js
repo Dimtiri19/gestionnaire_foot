@@ -1,5 +1,4 @@
 import User from "../models/userModel.js";
-import Team from "../models/teamModel.js";
 
 const fetchAllUsers = async () => {
   try {
@@ -9,28 +8,6 @@ const fetchAllUsers = async () => {
   } catch (error) {
     console.error("Error fetching users:", error);
 
-    throw error;
-  }
-};
-
-const fetchAllPlayers = async () => {
-  try {
-    const players = await User.find({ blocked: false }, { name: 1, email: 1, position: 1 }); 
-
-    return players;
-  } catch (error) {
-    console.error("Error fetching players:", error);
-    throw error;
-  }
-};
-
-const fetchAllFormation = async () => {
-  try {
-    const teams = await Team.find({}, { name: 1, formation: 1, team: 1}); 
-
-    return teams;
-  } catch (error) {
-    console.error("Error fetching teams:", error);
     throw error;
   }
 };
@@ -106,27 +83,6 @@ const updateUser = async (userData) => {
   }
 };
 
-const updatePositionFetch = async (userData) => {
-  try {
-    const user = await User.findById(userData.userId);
-
-    if (!user) {
-      // If the user wasn't found, return a status indicating failure
-      return { success: false, message: "User not found." };
-    }
-
-    // Update user.name and user.email with the new values
-    user.position = userData.position;
-
-    // Save the updated user data
-    await user.save();
-
-    return { success: true, message: "User updated successfully." };
-  } catch (error) {
-    console.error("Error updating user:", error);
-    throw error;
-  }
-};
 
 //ajout martin
 
@@ -134,8 +90,5 @@ export {
   fetchAllUsers, 
   blockUserHelper, 
   unBlockUserHelper, 
-  updateUser, 
-  fetchAllPlayers, 
-  fetchAllFormation,  
-  updatePositionFetch
+  updateUser
 };

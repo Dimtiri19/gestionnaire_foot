@@ -1,5 +1,5 @@
 import { apiSlice } from "./apiSlice";
-import { USER_AUTHENTICATION_URL, USER_LOGOUT_URL, USER_REGISTRATION_URL, USER_PROFILE_URL, USER_DISPLAY_SELECTION_URL, USER_PLAYERS_DATA_FETCH_URL } from '../utils/constants.js';
+import { USER_AUTHENTICATION_URL, USER_LOGOUT_URL, USER_REGISTRATION_URL, USER_PROFILE_URL} from '../utils/constants.js';
 
 const USER_AUTH_URL = USER_AUTHENTICATION_URL; 
 
@@ -41,26 +41,10 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 body: data
             })
 
-        }),
-        displaySelectionUser: builder.mutation({
-            
-            query: () => ({
-                url: USER_DISPLAY_SELECTION_URL,
-                method: 'POST',
-            })
-
-        }),
-        getUserPlayersData: builder.mutation({
-            
-            query: () => ({
-                url: USER_PLAYERS_DATA_FETCH_URL,
-                method: 'POST'
-            })
-
         })
 
     })
 })
 
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useDisplaySelectionUserMutation, useGetUserPlayersDataMutation } = usersApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation} = usersApiSlice;

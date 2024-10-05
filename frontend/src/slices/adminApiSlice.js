@@ -8,13 +8,7 @@ import {
     ADMIN_BLOCK_USER_URL,
     ADMIN_UNBLOCK_USER_URL,
     ADMIN_UPDATE_USER_URL,
-    ADMIN_PLAYERS_DATA_FETCH_URL,
-    ADMIN_TEAM_FORMATION_URL,
-    ADMIN_FORMATION_DISPLAY_URL,
-    ADMIN_SELECTION_URL,
-    ADMIN_UPDATE_POSITION_URL,
     ADMIN_DELETE_USER_URL,
-    ADMIN_DELETE_TEAM_URL
 } from '../utils/constants.js';
 
 
@@ -93,61 +87,11 @@ export const adminApiSlice = apiSlice.injectEndpoints({
             })
 
         }),
-        getPlayersData: builder.mutation({
-            
-            query: () => ({
-                url: ADMIN_PLAYERS_DATA_FETCH_URL,
-                method: 'POST'
-            })
 
-        }),
-        setTeamFormation: builder.mutation({
-            
-            query: (data) => ({
-                url: ADMIN_TEAM_FORMATION_URL,
-                method: 'POST',
-                body: data
-            })
-
-        }),
-        getFormation: builder.mutation({
-            
-            query: () => ({
-                url: ADMIN_FORMATION_DISPLAY_URL,
-                method: 'POST'
-            })
-
-        }),
-        setSelection: builder.mutation({
-            
-            query: (data) => ({
-                url: ADMIN_SELECTION_URL,
-                method: 'POST',
-                body: data
-            })
-        }),
-        updateUserPosition: builder.mutation({
-            
-            query: (data) => ({
-                url: ADMIN_UPDATE_POSITION_URL,
-                method: 'PATCH',
-                body: data
-            })
-
-        }),
         DeleteUser: builder.mutation({
             
             query: (data) => ({
                 url: ADMIN_DELETE_USER_URL,
-                method: 'DELETE',
-                body: data
-            })
-
-        }),
-        DeleteTeam: builder.mutation({
-            
-            query: (data) => ({
-                url: ADMIN_DELETE_TEAM_URL,
                 method: 'DELETE',
                 body: data
             })
@@ -167,11 +111,5 @@ export const {
     useBlockUserMutation,
     useUnblockUserMutation,
     useUpdateUserByAdminMutation,
-    useGetPlayersDataMutation,
-    useSetTeamFormationMutation,
-    useGetFormationMutation,
-    useSetSelectionMutation,
-    useUpdateUserPositionMutation,
     useDeleteUserMutation,
-    useDeleteTeamMutation
 } = adminApiSlice;

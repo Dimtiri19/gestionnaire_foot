@@ -58,17 +58,7 @@ const AdminHeader = () => {
               { adminInfo ? (
 
                 <>
-                   
-                  <LinkContainer to="/admin/formation">
-                    <Nav.Link >
-                       Formation
-                    </Nav.Link>                 
-                  </LinkContainer> 
-		              <LinkContainer to="/admin/player-info">
-                    <Nav.Link >
-                       Players
-                    </Nav.Link>                 
-                  </LinkContainer>                       
+                                         
                   <NavDropdown title={adminInfo.name} id="userName">
                     <LinkContainer to='/admin/profile'>
                       <NavDropdown.Item> Profile </NavDropdown.Item>

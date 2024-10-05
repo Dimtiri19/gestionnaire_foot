@@ -6,10 +6,6 @@ import { BadRequestError } from "base-error-handler";
 
 import User from "../models/userModel.js";
 
-import {
-  fetchSelection,
-} from "../utils/userHelper.js";
-
 import generateAuthToken from "../utils/jwtHelpers/generateAuthToken.js";
 import destroyAuthToken from "../utils/jwtHelpers/destroyAuthToken.js";
 import sendMail from "../utils/EmailSender/mail.js";
@@ -149,24 +145,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
   res.status(200).json({ user });
 });
 
-// Charlier Martin-----------------------------------------------------
-
-const getSelectionDisplay = asyncHandler(async (req, res) => {
-  const usersData = await fetchSelection();
-
-  if (usersData) {
-
-    res.status(200).json({ usersData });
-
-  } else {
-
-    throw new NotFoundError();
-
-  }
-});
-
-// FIn ajout Martin
-
 const updateUserProfile = asyncHandler(async (req, res) => {
   /*
      # Desc: Update user profile
@@ -210,6 +188,5 @@ export {
   registerUser,
   logoutUser,
   getUserProfile,
-  updateUserProfile,
-  getSelectionDisplay
+  updateUserProfile
 };

@@ -3,10 +3,7 @@
 // ===================== Importing necessary modules/files =====================
 import asyncHandler from "express-async-handler";
 import AdminModel from "../models/adminModel.js";
-import TeamModel from "../models/teamModel.js"
-import Selection from "../models/selectionModel.js"
 import User from "../models/userModel.js"
-import Team from "../models/teamModel.js"
 
 import { BadRequestError, NotAuthorizedError, NotFoundError } from "base-error-handler";
 
@@ -18,10 +15,7 @@ import {
   fetchAllUsers,
   updateUser,
   blockUserHelper,
-  unBlockUserHelper,
-  fetchAllPlayers,
-  fetchAllFormation,
-  updatePositionFetch,
+  unBlockUserHelper
 } from "../utils/adminHelpers.js";
 
 const authAdmin = asyncHandler(async (req, res) => {
@@ -213,127 +207,6 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 });
 
-//Charlier Martin
-
-const getAllPlayers = asyncHandler(async (req, res) => {
-  const usersData = await fetchAllPlayers();
-
-  if (usersData) {
-
-    res.status(200).json({ usersData });
-
-  } else {
-
-    throw new NotFoundError();
-
-  }
-});
-
-const setFormationTeam = asyncHandler(async (req, res) => {
-  /*
-     # Desc: Register new team
-     # Route: POST /api/v1/admin/set-team
-     # Access: PUBLIC
-    */
-
-  const {name, formation, team } = req.body;
-
-  // Vérification des champs requis
-  if (!formation || !team) {
-    res.status(400);
-    throw new Error('Please provide both formation and team');
-  }
-
-  try {
-    // Store the team data to DB
-    const newTeam = await TeamModel.create({
-      name: name,
-      formation: formation,
-      team: team,
-    });
-
-    res.status(201).json({
-      message: 'Team registered successfully'
-    });
-  } catch (error) {
-    res.status(500);
-    throw new Error('Failed to register team');
-  }
-});
-
-const getFormationTeam = asyncHandler(async (req, res) => {
-  const usersData = await fetchAllFormation();
-
-  if (usersData) {
-
-    res.status(200).json({ usersData });
-
-  } else {
-
-    throw new NotFoundError();
-
-  }
-});
-
-const setSelectionTeam = asyncHandler(async (req, res) => {
-  /*
-     # Desc: Register new team
-     # Route: POST /api/v1/admin/set-formation
-     # Access: PUBLIC
-    */
-
-  const { name, formation, team } = req.body;
-
-  // Vérification des champs requis
-  if (!formation || !team) {
-    res.status(400);
-    throw new Error('Please provide both formation and team');
-  }
-
-  try {
-    // Supprimer toutes les formations existantes
-    await Selection.deleteMany({});
-
-    // Enregistrer la nouvelle formation
-    const newTeam = await Selection.create({
-      name: name,
-      formation: formation,
-      team: team,
-    });
-
-    res.status(201).json({
-      message: 'Selection registered successfully'
-    });
-  } catch (error) {
-    res.status(500);
-    throw new Error('Failed to register a selection');
-  }
-});
-
-const updatePosition = asyncHandler(async (req, res) => {
-  const userId = req.body.userId;
-  const position = req.body.position;
-
-
-  if (!userId || !position) {
-    throw new BadRequestError("Player position not received in request - Player Position update failed.");
-  }
-
-  const userData = { userId: userId, position: position };
-
-  const usersUpdateStatus = await updatePositionFetch(userData);
-
-  if (usersUpdateStatus.success) {
-    const response = usersUpdateStatus.message;
-
-    res.status(200).json({ message: response });
-  } else {
-
-    throw new BadRequestError("User update failed.");
-    
-  }
-});
-
 const deleteUserData = asyncHandler(async (req, res) => {
   const userId = req.body.userId;
 
@@ -350,25 +223,6 @@ const deleteUserData = asyncHandler(async (req, res) => {
   }
 
 });
-
-const deleteTeamData = asyncHandler(async (req, res) => {
-  const userId = req.body.userId;
-
-  if (!userId) {
-    throw new BadRequestError("UserId not received in request - User blocking failed.");
-  }
-
-  const deletedUser = await Team.findByIdAndDelete(userId)
-
-  if (deletedUser) {
-    res.status(200).json({ message: "User deleted successfully." });
-  } else {
-    throw new BadRequestError("User not found or already deleted.");
-  }
-
-});
-
-//FIN DU RAJOUT PAR MARTIN
 
 const blockUser = asyncHandler(async (req, res) => {
 
@@ -451,11 +305,5 @@ export {
   blockUser,
   unBlockUser,
   updateUserData,
-  getAllPlayers,
-  setFormationTeam,
-  getFormationTeam,
-  setSelectionTeam,
-  updatePosition,
-  deleteUserData,
-  deleteTeamData
+  deleteUserData
 };

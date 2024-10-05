@@ -14,11 +14,8 @@ import {
   registerUser,
   logoutUser,
   getUserProfile,
-  updateUserProfile,
-  getSelectionDisplay
+  updateUserProfile
 } from "../../controllers/userController.js";
-
-import { getAllPlayers } from "../../controllers/adminController.js";
 
 import { userSignUpDataValidation, userSignInDataValidation } from "./backendDataValidationConfig.js";
 import { multerUploadUserProfile } from "../../config/multerConfig.js";
@@ -35,10 +32,6 @@ router.post("/", userSignUpDataValidation, validateRequest, registerUser);
 router.post("/auth", userSignInDataValidation, validateRequest, authUser);
 
 router.post("/logout", logoutUser);
-
-router.post("/get-selection", requireAuth, verifyUser, getSelectionDisplay);
-
-router.post("/get-players", requireAuth, verifyUser, getAllPlayers)
 
 //* ==================== User Profile Routes ====================
 
